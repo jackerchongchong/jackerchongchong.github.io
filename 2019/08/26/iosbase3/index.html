@@ -1,0 +1,1732 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="AFN表单上传图片, 潘腾龙">
+    <meta name="description" content="AFN表单上传图片今天在做项目上传图片的时候，用到了formData上传图片，遇到了问题，很奇怪的问题。需求是这样的：上传图片，首先压缩一定的比例，然后转成base64格式的data，传给后台参数是这样的：img_base64:imageD">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    
+
+    <title>AFN表单上传图片 | 潘腾龙</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="潘腾龙" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">潘腾龙</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">潘腾龙</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://jackptl.gitee.io/ptlblog/" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>联系我
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://jackptl.gitee.io/ptlblog/" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="联系我" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">AFN表单上传图片</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/AFN%E8%A1%A8%E5%8D%95%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/">
+                                <span class="chip bg-color">AFN表单上传图片</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/AFN%E8%A1%A8%E5%8D%95%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/" class="post-category">
+                                AFN表单上传图片
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-08-26
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2022-07-25
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    1.2k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    5 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="AFN表单上传图片"><a href="#AFN表单上传图片" class="headerlink" title="AFN表单上传图片"></a>AFN表单上传图片</h3><p>今天在做项目上传图片的时候，用到了formData上传图片，遇到了问题，很奇怪的问题。需求是这样的：<br>上传图片，首先压缩一定的比例，然后转成base64格式的data，传给后台参数是这样的：img_base64:imageData  </p>
+<ul>
+<li><p>在postMan中的请求是这样的：<br><img src="data:image/png;base64,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eG1wAAAAAAA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJYTVAgQ29yZSA1LjQuMCI+CiAgIDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+CiAgICAgIDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiCiAgICAgICAgICAgIHhtbG5zOmV4aWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20vZXhpZi8xLjAvIj4KICAgICAgICAgPGV4aWY6UGl4ZWxYRGltZW5zaW9uPjk0NzwvZXhpZjpQaXhlbFhEaW1lbnNpb24+CiAgICAgICAgIDxleGlmOlBpeGVsWURpbWVuc2lvbj4yNDM8L2V4aWY6UGl4ZWxZRGltZW5zaW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4Kk8fv2gAAQABJREFUeAHsnQecFEXah9/ZwBIlKGJETAgmVMwRRcV46nmmM55+p2c405nOO3O688z5xJxzPHPGnDMKGBARAZGclg3z1VNrDb3DzOwMM7s7w/5ffrMz011dXf10dVH/et+qic2bNy9uMhEQAREQAREQAREQAREQAREQAREoIQJlJVRWFVUEREAEREAEREAEREAEREAEREAEPAGJWVUEERABERABERABERABERABERCBkiMgMVtyt0wFFgEREAEREAEREAEREAEREAERkJhVHRABERABERABERABERABERABESg5AhKzJXfLVGAREAEREAEREAEREAEREAEREAGJWdUBERABERABERABERABERABERCBkiNQka7EkydPtmnTpllNTU26JNouAiIgAiIgAiIgAiIgAiLQQgQqKyuta9eu1qNHj6zPOH5GvZ35YrW9/G2d/TJLv8gJuPicKRbr0D1rhoVI+McBlXbRDlXWrX0sq+zq6+uturraamtrLR4vzfs2ZcoU6969eTmnFLMI2YqKCv+glCq8rGrJIp4oFosZr/Hjx9tSSy21iF+tLk8EREAEREAEREAE2gaBkSNHWt++fbO62L8/V22PfFmbVVolaj4C93xaY0jSG3Zvn9VJ5s6d64VsVonbcKKUYhaPbBjxYQQIQSQrLQIMQpTySE5p0VZpRUAEREAEREAERKA4Cbz4jYRssdyZp0dkfy/ox8uaJpByziyhxYghvLMSsk1DLMYU3DfunzzrxXh3VCYREAEREAEREAERaBkC06tb5jw6S9MEps0tzXDhpq+s9VKkFLOhOBKygURpvuv+leZ9U6lFQAREQAREQAREQAREQASaJpBRzDZ9uFKIgAiIgAiIgAiIgAiIgAiIgAiIQMsTkJhteeY6owiIgAiIgAiIgAiIgAiIgAiIQJ4EJGbzBKjDRUAEREAEREAEREAEREAEREAEWp6AxGzLM9cZRUAEREAEREAEREAEREAEREAE8iQgMZsnQB0uAiIgAiIgAiIgAiIgAiIgAiLQ8gQkZlueuc4oAiIgAiIgAiIgAiIgAiIgAiKQJwGJ2TwB6nAREAEREAEREAEREAEREAEREIGWJyAx2/LMdUYREAEREAEREAEREAEREAEREIE8CUjM5glQh4uACIiACIiACIiACIiACIiACLQ8AYnZlmdeEmd8+umni7KcdXV1Vltb2yxlmz17dsZ8q6urLR6PZ0yTbifH1dTUpNw9Z86clNuTN5LHvHnzkjf77+RdX1+fcl90Y6Z0XF86tuxLZ5R/YbmQ55QpU+ytt95Kl32b2P7rr7+2ievURYqACIiACIiACIhAIQlUFDKzbPKis0zHuFOnTmmTz50719q3b592v3Y0P4Enn3zSdtppp5Qnmjp1qhcv3bt39/sRUWPGjLE+ffqkTJ/NRsTMqFGj7OCDD/bJ6dxfdtlldsEFFyQO5zz//ve/bbnllrODDjrIXnvtNXviiScS+/kwc+ZM+9vf/mZ9+/ZttJ0v77//vt1222126qmnWu/evRP7v/rqK7vrrrusc+fOXswdccQRtuSSSyb28+HTTz+1q6++2i655BLr1q1bo33hS7r8n3rqKfvoo498smWWWcb+9Kc/WVlZmb366qv20ksv+fPyTKyxxhq25557huwavT/yyCM2YsQIq6iosMrKSjvkkEN8ORC3Q4cONYQ4zxb5B4bRDDKlQ+DecsstNmHCBJ/H+uuvb7/73e/84WPHjrX777/f32/KuMkmm9g222zj93GPbrjhBovFYjZr1izbe++9bcCAAdHT2umnn24nn3yyhbrSaOdvXxCzb775pm266aapdme97fvvv7cVV1xxgfTZlGGBg1pwAwMB1HPqNvdWJgIiIAIiIALFTqBzO7O5zrdQ2/Q4et6Xsuda7Wyn1drZsU/MtFmpx/TzPseikAH9ufLyct/HXBSuJ9trKJiYPemkk2zSpEm+Y0tnf5111rH999/fd74pDGLnzjvvtO+++87wri222GJeLG2//fYJ6Pfcc4998MEHNnnyZN8p32GHHaxDhw527bXXprwexE6PHj1S7tPG5iMwbNgwW3bZZW3gwIH+JIjQDz/8MGsxS+cdARS1d999t5F45vtGG20UTWLPP/+8Lb744oltW221lfEKNmPGDDvvvPNSChrE4M8//+yFcEjPOwIZgXvCCSfYUkstZV988YWvpwjiYAg1zr388suHTQu8p8sfMTh8+HA77bTTvFAh3TPPPGM777yzL+c//vEPP3BDOc4880x/zYj1qP30008+j3/+859+83PPPWcvv/yy/f73v7c33njDevbs6YUkO6+66ir78ssvvTDme2CdKR1Csl27dv78lOM///mP9e/f31ZddVVjUGPbbbf1IhVBHMrIYNRDDz1kW2+9tRehDHBcdNFF1q9fP6uqquLU9u2333oRm0nI+oQF+EPZaD/gGbWWLEP0vLl85lm49NJLF3gmcslDaUVABERABESgJQjsO6CdHTSwvW22QoXVuWC1j3+qtevemWsPf958KnPdZSpsv3Xa2UlPucFzW7gIuZZg01rnwNmBY2bcuHFeU9EvXHvttX0/rrXK1JLnLZiYpdBbbLGF79yOHDnSe3PoEG+44YbeW/avf/3LCwm8JAhZxM8DDzzgrxXR+vXXX9sLL7xgRx99tBey5IH3jBtCBxq78cYbfR7BY0g+suYhgOcQbynCi1EevGYMPLz99tuGmMKLidDZfffdvYhATHDPuJd4BzkWYcR9xsv+xz/+MSGwGIRYd911Ex6+adOmea8g4ikYYvbII48MX/0DysO6+eabe7GW2BH5gKcWz2Eq7xbCmHIh1KKGN48BEYQstuaaa9qtt97q6yzXiN13333eU3nvvff676n+pMufwZn11lsvUSbE90033eTF7AorrJDICt5wThVyjMc1GsYbHQhIDguO7vvf//5nP/74o+eYKd3HH3/s7xuFoRxcC/eN+xE9jn1h1I/yIPzxMmMMYK200kpedHNvMe4hzz+GF5pjPvnkE/vhhx/8veBYnu9kwxOM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pJpLyM6/kkXnE4PoydOhole3sJFrIQ+8tdlE1oX0Lfnuxj1kIiACIiACIiACIiACIiACIiACIlBaBCRmS+t+qbQiIAIiIAIiIAIiIAIiIAIiIAKOgMSsqoEIiIAIiIAIiIAIiIAIiIAIiEDJEZCYLblbpgKLgAiIgAiIgAiIgAiIgAiIgAhIzKoOiIAIiIAIiIAIiIAIiIAIiIAIlBwBidmSu2UqsAiIgAiIgAiIgAiIgAiIgAiIgMSs6oAIiIAIiIAIiIAIiIAIiIAIiEDJEZCYLblbpgKLgAiIgAiIgAiIgAiIgAiIgAhkFLPxeOYfRBa+4iag+1fc90elEwEREAEREAEREAEREAERWHgCKcVsZWWlxWIxq62tNQmihYfbmkdy37h/3EeZCIiACIiACIiACIhA2ySwWFXbvO5ivOrFqtQvL/R9qUiVYdeuXb0IQhDV1NSkSqJtJUAAISsxWwI3SkUUAREQAREQAREQgWYisO0qFfbIl7XNlLuyzYXAzv1SSq+UWVRUVHjHVMqd2pggkJJojx49bPLkyTZt2jSJ2QSq0v4wfvz40r4AlV4EREAEREAEREAERCBnAhcNqbLKcrOXv62zX2ZpCmHOAAt0wH4DKu1fO2TvJm/fvr1VV1crUrYJ/rF58+apVjcBSbtFQAREQAREQAREQAREQAREQASKi0DKObPFVUSVRgREQAREQAREQAREQAREQAREQAQaE5CYbcxD30RABERABERABERABERABERABEqAgMRsCdwkFVEEREAEREAEREAEREAEREAERKAxAYnZxjz0TQREQAREQAREQAREQAREQAREoAQISMyWwE1SEUVABERABERABERABERABERABBoTkJhtzEPfREAEREAEREAEREAEREAEREAESoCAxGwJ3CQVUQREQAREQAREQAREQAREQAREoDEBidnGPPRNBERABERABERABERABERABESgBAhIzJbATVIRRUAEREAEREAEREAEREAEREAEGhOomDp1auMt+iYCIiACIiACIiACIiACIiACIiACRU4gNm/evHiRl1HFEwEREAEREAEREAEREAEREAEREIFGBBRm3AiHvoiACIiACIiACIiACIiACIiACJQCAYnZUrhLKqMIiIAIiIAIiIAIiIAIiIAIiEAjAhKzjXDoiwiIgAiIgAiIgAiIgAiIgAiIQCkQkJgthbukMoqACIiACIiACIiACIiACIiACDQiIDHbCIe+iIAIiIAIiIAIiIAIiIAIiIAIlAIBidlSuEsqowiIgAiIgAiIgAiIgAiIgAiIQCMCErONcOiLCIiACIiACIiACIiACIiACIhAKRCQmC2Fu6QyioAIiIAIiIAIiIAIiIAIiIAINCIgMdsIh76IgAiIgAiIgAiIgAiIgAiIgAiUAgGJ2VK4SyqjCIiACIiACIiACIiACIiACIhAIwISs41w6IsIiIAIiIAIiIAIiIAIiIAIiEApEJCYLYW7pDKKgAiIgAiIgAiIgAiIgAiIgAg0IiAx2wiHvoiACIiACIiACIiACIiACIiACJQCAYnZUrhLKqMIiIAIiIAIiIAIiIAIiIAIiEAjAhKzjXDoiwiIgAiIgAiIgAiIgAiIgAiIQCkQkJgthbukMoqACIiACIiACIiACIiACIiACDQiIDHbCEdhvsTjceOVj/366682adKkfLJodOzs2bMbfc/nC9c2Z86cfLJoE8fOmzfPvv/++zZxrblc5HfffWeffPJJLocobYkSqK+vN14LY2pnFoaajhEBERABERCBtkWgIpfLfemll6ympsYLtfLycuvdu7f169cvlyzaRNrPP//c5s6daxtuuGHW10t6Om8dOnTwxyBm6QQuscQSWeeRKeGrr75qO+ywg5WV5T5+QbmmTZtm3bp186eYOnWqffnll7b55ptnOmXR7vvss8+sU6dOtvLKKyfKSL1+7rnnbJdddklsy/dDdXW1IdxWXHHFfLNq9eNvueUWe/PNNz03BjJ69uxpBx98sK222mo5lw0mY8aMsXXWWSfnY4vxAAYtnnrqKc+mtrbWqqqqPJfllluuGItbsDIlt1nRjKn7H3/8sc2cOdO3YxUVFbbxxhtbx44do8kyfs6lnclUlownKeDOsWPH2hdffOFzpE7wfyQvbPvtt8+57U1ud31G+iMCIiACxUagptqs3MmJsob2Lp/i1b54t1Vsu/8CWcSnTbJYZ9cH5TwtZXOdE6h99v9nRYsVnzXd6j991co3/V10c+E+19W2LIvClbywOcEhVmY514pNN93UFltsMd9Jeeutt3znBFErayCAAP3ll198J4YOTbt27bJCgwcPrssuu2xW6XNNtNNOO+V6SCI9wvqnn35KiNnu3buXrJBNXJQ+5Exgr732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lkrUR/fDKhOTaNpMn5k7nMooV0sLWcqBpzgXIcsxlDPK0Xnx0wlZn9x5s42fEPICli3OqGNEmrkQpoKFGTfkrL8iIAIiIAIiIAIiIAIiIAIiIAIi0LwE5JltXr7KXQREQAREQAREQAREQAREQAREoBkISMw2A1RlKQIiIAIiIAIiIAIiIAIiIAIi0LwEJGabl69yFwEREAEREAEREAEREAEREAERaAYCErPNAFVZioAIiIAIiIAIiIAIiIAIiIAINC8Bidnm5avcRUAEREAEREAEREAEREAEREAEmoGAxGwzQFWWIiACIiACIiACIiACIiACIiACzUvA/aiPTAREYFEnMPeEQYv6JeZ1fe0vfzWv43WwCIiACIiACIiACIhAyxOQZ7blmeuMIiACIiACIiACIiACIiACIiACeRKQmM0ToA4XAREQAREQAREQAREQAREQARFoeQKxiRMnxlv+tDqjCIiACIiACIiACIiACIiACIiACCw8gVjc2cIfriNFQAREQAREQAREQAREQAREQAREoOUJKMy45ZnrjCIgAiIgAiIgAiIgAiIgAiIgAnkSkJjNE6AOFwEREAEREAEREAEREAEREAERaHkCErMtz1xnFAEREAEREAEREAEREAEREAERyJOAxGyeAHW4CIiACIiACIiACIiACIiACIhAyxOQmG155jqjCIiACIiACIiACIiACIiACIhAngQkZvMEqMNFQAREQAREQAREQAREQAREQARanoDEbMsz1xlFQAREQAREQAREQAREQAREQATyJCAxmydAHS4CIiACIiACIiACIiACIiACItDyBCRmW565zigCIiACIiACIiACIiACIiACIpAnAYnZPAHqcBEQAREQAREQAREQAREQAREQgZYnIDHb8sx1RhEQAREQAREQAREQAREQAREQgTwJSMzmCVCHi4AIiIAIiIAIiIAIiIAIiIAItDyBikKdcvz48cZr5syZPsvOnTvbUkst5V+FOkcp5MP1jx071nPgMxx4Lbfccv69FK6h1Mqouldqd0zlhUBbqbdt5TpVq0VABERABERABFqeQCzuLJ/T1tbW2hdffGFTp05NmU23bt1szTXXtIqKgunmlOcpho2jR482XumsT58+xiudwfLDDz+0MWPG2DbbbGOLL754uqTNvv2dd97xAhwRXqzW1ureiBEj7JNPPrF1113X+vbtW6y3xb7++murq6uzNdZYo1XLOGPGDHvrrbdsyJAhOZVjYY/L9iRtpd7me52//vqrffbZZ7b11lunRDtlyhTr0qVLm/i/JSUAbRQBERABERABEbC8wozprNC5Tidk4cs+0pB2UTY68JmELNfOftKlszvuuMO+/PJLW2211axjx47pkrXIdkTAjz/+2OS5uKbWuLdtre699957ds8999jqq69uiy22WJP3pTUTDB8+3D7//PPWLII/N6L06aefzrkcC3tcNidqK/W2ENeJmH3ppZfSYr3uuuuMAR6ZCIiACIiACIhA2yWQl5iNhhVnQki47aRJkzIlKel9XB8sgnUb95X1f+EaG/jQP2zNp/9jywx/OexqFIqd2PjbB7yye+yxh6299trWoUOH5N1F+f3mm2+2OXPmtHjZ2lrdo25su+22ttZaa7W50P0Wr1zNeMK2Um9b4jpPP/30Vvf+N2NVUdYiIAIiIAIiIAJZECg/21kW6VIm+fbbb626ujrlvuSNNTU1tvTSSydv9t//+c9/WiwWs0suucSeffZZn2f//v39vrlz59oNN9zgX0899ZTfhucSI+2oUaPsgQcesNtuu817PQnjDZ4rOlT/+te/7Pbbb7ePPvrIC4FOnTr5Ywv557vvvkvMFUbIrvzWXVZZ3TB3uKJmrnX55XuLuX8zeq7oT1tfX29LLLFEoggwvOyyy3z5P/74Yy94CSXlM+W/99577dNPP/VeuVD+s846y4chn3feeTZy5EjbeOONDY54RP7zn//Y//73P78fz4ay0noAADQHSURBVMWll15qL7zwgvf2rrDCConzRj9wDeTFufhMmGjv3r1t+eWXt2+++cYuvvhi7xnEy85caMo/dOhQH8b5/vvv2+uvv+7FVrq00XMV4nMh6t7bb79tDz/8sGdHmV588UV79dVXfRhvtIzUS0K+uWa4HHfccdarVy9bZpllfLKTTz7Zpk2bZpQp1M0rr7zSc0R8YrDi3sBxu+22s7KyMp/+73//uw0aNMiqqqr8fefeJYdV4pHFQ4VXnzIPHjw4kfbWW2+11157zZeFMmFXXXWV9ejRw993no1dd911oevGvHnz7MQTT7Qdd9zR582fW265xajDXD/PIM/ZY489Zlwz9fCnn37ynJhegD3yyCN2+eWX2+OPP+6/B0aUk3yuuOIKe+ihh+zn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wkXDAA0DNjxPLCJHfjAjXJxXpuNSlS3fbfnW21TnZ248q0IjYplKEPWEw4JnljrIs41R5xjIaY72MJSvENfJIm0s2MRgCOHBPFvU+VyM5wpPNO0cUQ3hec+UB3XnmmuuMRZdk4mACIiACIiACBQvgZjzUMQLUTxGu/HaBG8Hgo3O68J6ZJPLRAeNn9EInbHk/Zm+UyaOozPTnIaY5ZXOELK8cjU8LdnMs8013+T0VAW834QjJhuLDiFkUvHH28b+cFymtMn5FuJ7c9e9QpSxufLAc0moeK4d/IUpD3WDcy2MMRDCc4igis71bSovBqE4NvnZzdQeUE4Gs2gvUhkDb9RVRF7UmjoumrYQn5uj3lIfwnNYiDIWIo9CXCfXRR3Ipe5Ey46nnnYpuR5F00Q/ExXAiwFRmQiIgAiIgAiIQPESKJiYLd5LbNmS0WEnNA5PQhChdODxtGbjkW3Z0upsIiACIiACUQIMdrBQGEKWCAyZCIiACIiACIhA8RKQmC3ee6OSiYAIiIAItCAB5s2zMBaLsEUXVGvBIuhUIiACIiACIiACORCQmM0BlpKKgAiIgAiIgAiIgAiIgAiIgAgUB4G8VjMujktQKURABERABERABERABERABERABNoaAYnZtnbHdb0iIAIiIAIiIAIiIAIiIAIisAgQkJhdBG6iLkEEREAEREAEREAEREAEREAE2hoBidm2dsd1vSIgAiIgAiIgAiIgAiIgAiKwCBCQmF0EbqIuQQREQAREQAREQAREQAREQATaGgGJ2bZ2x3W9IiACIiACIiACIiACIiACIrAIEJCYXQRuoi5BBERABERABERABERABERABNoaAYnZtnbHdb0iIAIiIAIiIAIiIAIiIAIisAgQkJhdBG6iLkEEREAEREAEREAEREAEREAE2hoBidm2dsd1vSIgAiIgAiIgAiIgAiIgAiKwCBCo+OWXXxaBy9AliIAIiIAIiIAIiIAIiIAIiIAItCUCsbizYrjgZFHds2fPYiiWyiACIiACORMI7ZnasZzR6QAREIEiIKA2rAhugoogAiKQFQGFGWeFSYlEQAREQAREQAREQAREQAREQASKiYDEbDHdDZVFBERABERABERABERABERABEQgKwISs1lhUiIREAEREAEREAEREAEREAEREIFiIiAxW0x3Q2URAREQAREQAREQAREQAREoCQJhfnlJFHYRLaTE7CJ6Y3VZIiACIiACIiACIiACIiACIrAoE5CYXZTvrq5NBERABERABERABERABERABBZRAhKzi+iN1WWJgAiIgAiIgAiIgAiIgAi0LQJtLfRZYrZt1W9drQiIgAiIgAiIgAiIgAiIgAgsEgQkZheJ26iLEAEREAEREAEREAEREAEREIG2RUBitm3db12tCIiACIiACIiACIiACIiACORNoPaD5y0+ebzPp+HzhLzzDBnU/zjC6r56t+FrfZ3Fp00Kuxq9VzT6VuRf6uvrbeLEibbYYotZx44dra6uzogL79Spk1VWVtrUqVMTV9CuXTuLxWI2b94869Wrl99eW1trkyZNShyfSKwPIiACItACBGbNmmUzZszwbRLtE8Z3ti+11FL++7Rp04xXjx49rHPnzn5bctvnN7o/s2fPtunTp9uSSy5pZWVlFo/HbcKECdalSxffLtI+0k4GI0/aRpkIiIAI5EMgtC30vbp37+7bn5Af7decOXPCV98W0SZhbB83bpwts8wy1qFDh0Qa2rixY8faEkss4ft3oc0jQXK7NXfuXN/fIy3tHv1CLPQN+RzaVT4Hq6io8HlF+5HsC+eiHU4uV7jO0MaSnm2UPbTPbJOJQCkTmHXhgRafPdOs3MnCeXOsvHd/a3/A6Rbr0r3Jy5r37rNW1XUJK++xlPnP3Xq5zw26K9XB8VnTbeZpO1msa8/E7orV1rf2B/4j8T18qBvztdWN+87K+29k9WNH2dzHrrOOx17ld9eNHm7lfVb3n0tKzNJAHnnkkXbEEUfY9ttvb1deeaV98skn9u9//9u++eYbu+yyy3ynjgZr5ZVXtrXWWsuuu+46O++882zNNde0hx56yL+uuuoq31gGWHoXAREQgZYgMGLECN8eXXDBBbb66g2N8MUXX2zV1dXGO0a79tlnn9nWW29tRx99tN8Wbft22GEHv40/b7zxhl1//fV200032eKLL+7zoY086KCDbI899rCzzz7bJk+e7DtwpD/22GNttdVW46NMBERABBaaQGhbEHUIxy233NL+9Kc/eYF3zz332IsvvpgYoNtxxx1tl112sf/+97/2zjvv+DQIx0svvdS6du1qDz74oD355JNWVVXlnRCk32abbXx/j/0I5p49e9qf//xnW3HFFe3999/3/b2rr77aC2XaPNLR90N0Hn74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LEpDn0VABIqZgDyzxXx3VDYREAEREAEREAEREAEREAEREIGUBCpSbtVGERABERCBghIIno6CZqrMREAERKBABBRJUiCQykYERKBFCUjMtihunUwERKAtE9DPj7Xlu69rF4HiJaBftijee6OSiYAIZCagMOPMfLRXBERABERABERABERABERABESgCAlIzBbhTVGRREAEREAEREAEREAEREAEREAEMhPIO8x4woQJ5lZEti5dumQ+U9LeadOmWfv27a1Xr15Je/RVBERABBZ9AnvssYc9+uiji/6F6gpFQAREQAREQAREoJkI5CVmEbLvvvuuDR061H744YecirjCCivYkUceaQMHDpSgzYmcEouACIiACIiACIiACIiACIiACOQVZoxHdmGELNgRv9dff7336uo2iIAIiIAIiIAIiIAIiIAIiIAIiEAuBPISs4QW5+qRjRaOY3MNTw7Ht9TKe2+88Ya11LnCtcXjcZs+fbrV19eHTYl3tjGIIBMBERABERABERABERABERCBtkSAnzp8//33E5dc8frrrye+ZPqw5JJL2mqrrZYpSZP7EK677767PfbYYzZjxowm06dLgNg7/fTT7brrrrPKysp0yQqyfdiwYda9e3driZ/UmDlzpvd0T5o0yTp27Gg77rijrbfeeo2u4+6777YPP/zQrrjiikbb9UUEFhUCY8eOtS+++MJfDgM35eXl/sWG7bff3srKch+Dmzt3rtFudOjQYVHBpOsQAREQAREQAREQgTZHYMyYMfbCCy8Y01132WUXy1rMVlVV5SVmEbK333679e/f31j45Pe///1Cw4/FYnbjjTca74uSXXrppbb11lvblltumfKyRo4caZMnT065TxtFYFEhsNxyyxkvjDn5yy+/vC2zzDJ5Xd73339viy22mC277LJ55aODRUAEREAEREAEREAEWo/A2muv7SODP/vsM1+Iiv333z+r0nTt2jWrdKkSRYUs+0eMGJEqWU7bTjjhhIR38uyzz7bNN9/cHn/8cZ8H1zR79mx74oknrKKiwnuD2Y9999133jM8fvx4wxPauXNn22mnnWzQoEF+f6o/dIQR4qzAvM4669hhhx1m7dq1895l5v2yHz5DhgzxYpQ83nzzTXvmmWe8+KQD/Ze//MUWX3xx47w33HCD4X2ik37UUUd5ry951NTUpBWyeKjuvPNOv2jWxRdfnKqY2iYCbYJAbW2tffLJJz78n8iMAQMG+Gfop59+sp9//tnWX399z4FpDITrd+vWzb755hv/zH799de24YYbNpre8OSTT9rnn3+ekt1aa61lu+66a8p92igCIiACIiACIiACItDyBELfDEFbwarCzWnJQpYQ47///e95nzI6j3XUqFHec/Pvf//bvv32W7vooot8h/Xcc8814qr5HsTsgw8+aL/73e+8h/iRRx7xYjOTkKWgb7/9tv31r3/1ob8seIVQxYPaqVMn22677WyNNdbw5znjjDNsq622MjrbnOf888/3x4wePdp69Ojhr/nWW2/1ghXvK51ofprj8MMP9+VeddVV7dlnn/WCe6ONNrJ11103EVJ533332Q477ODFd97wlIEIlDABBqQYpOLZ4/lG2G677bbe68o+RC0DRwya8ZzxE2AMIuHdTeWZpUEkVGXixImNqDC1IjSWjXboiwiIgAiIgAiIgAiIQKsSCH20MubMZvNqypt6zDHH2Isvvtios9hcQjYVuW222cYLRzwpzIvjO2GFvXv39tvHjRvnD8Mzs+KKK/rPK620kvfcpMovuo15enhR6SAPHjzYglubuXsITry0eHiZW/vjjz/6+X3M0fv0008T5yEkGu8qIhyhyufNNtvMz39lLt+UKVPsgw8+8HOAKfsrr7xiDz/8sD+eMtPRJr1MBNo6AZ4Fnl2emxAxggcWY4758OHD7eOPP7Z+/fp5IZsNrwMOOMCYShGMz2yTiYAIiIAIiIAIiIAIFC+Bgs2ZPeigg3zo3tVXX20HH3ywv+IwR5YvhfLIpkPZp0+fxC48MYjPYHRMEY8Ycdb33HOPbbDBBvbUU0/5BWVCunTvhCkGw5N9xx13+K90qh966CHv9cFLi1Ctq6vzYvYf//iHsVgT+w855BAfCsmc119//dXOO++8kJ0XwCyGxXGEPyKWsSWWWMJ7lHfbbTe77bbb7OSTT/addzrwGO+L2pxhf2H6IwIZCLCaN88Qi6AFY4GoOXPm+MErnkMWa+PZZCArW6PNQLzefPPN/hA+s00mAiIgAiIgAiIgAiJQfATCNLGCzZlFzCLyWOAJDy0CLYT0NbeQBS9hh1FLJ/RYfArBjdeYDms2YdbMvw1GuGIQyg888ID17dvXz3tl/7HHHhuS+TSnnXaaIWAvv/xy4zOdY7zGhD0nlw+vL/P9grGaMd5dwibxKjNHGEPEVldX+wGDyy67zIvecIzeRWBRJ0A0BM8Og1FEQyTbrFmzvJBF1BIlEZ7V5HSpvvfq1cuvisc+PstEQAREQAREQAREQASKj0AQskTkFmzOLKGwiLQLL7zQe0gI8cWuvfZau+aaa4qGwvPPP+9/8oZ5snh0srG33nrLBg4c6NO/8847BjiMpaH5+RyM60foYsyZxYNE+DFil7mwhEHy00Z0xMljk0028WkR/QhrFq0588wz/WJVsGOeLuckVDJ4gjmAfEinn+bx+PSnDRJAaLJgGnPVEbcsnMZgFs/WRx995LczR53pE0Q4MICEuI0OSqXDRuSGTAREQAREQAREQAREoDgJvPfee37hzrBIZ9Zhxtn8ziyLGWEIWozfgg3b/IYi+ENH+K677vKLLxF6vMoqq9hxxx23gGc3WlTm5+EZpeNMyPE+++zjd7OQFGIdjyud54033thvp9PMisOENxM+TIc6CODjjz/eWAH53nvv9Z1w5u+ecsopPtx433339czwOFFOvstEQAQaE0BwIlpZLI0BI54x5pmzejHPXIgIYfCIxaEYOOKnfviBbcKPeRbDYFvjnPVNBERABERABERABESgmAkExwPTM7HY2Wef3TAJs4lS00n829/+1igVK4mm+k3U8NMXL730UqP0qb4MGzbMC0Tyilp0nmp0ez6fmWf32muvefEavLKEHOMVDZ7SdPnjaSXsl/DfqLEdUZxqfh3p6WwjgpONnwXCm5R8XAgjTt6efLy+i0BbJ4CI5cUzlq3xrOaSPtt8k9OF9izajrGN+bzBmPJQbIN9oWx6FwERaFsEWPMjub2CQHRb2yKiqxUBESgVAgWbMxu9YNy/xWgITwzByIs5qqzSzDxfflYn2fDY4lXFEKTJQjZsTyc8023nuFTz/dhOqGSm40gjEwERMB/2HwalsuXREkI227IonQiIgAiIgAiIgAiIQH4E8pozO23aNL+AEuF9C2MsvsSc0ZYa+WPRmLFjx9oll1zi57USjnjYYYf5n9fhdyplIiACIiACIiACIiACIiACIiACpUGg8RLAOZYZD+Kf//xnGzp0qJ+vlsvhCNm//OUvLRLyFy0XoX0yERABERABERABERABERABERCB0iYQc3PIspozm+4yJ0yY4OeMsiJvLoZXFzEcfgIjzDELebSU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" alt="postman截图">   </p>
+</li>
+<li><p>在代码中，我们需要这样做，图片转码代码如下：</p>
+</li>
+</ul>
+<pre class=" language-objectivec"><code class="language-objectivec"> <span class="token comment" spellcheck="true">// 压缩图片质量</span>
+ NSData <span class="token operator">*</span>data <span class="token operator">=</span> <span class="token function">UIImageJPEGRepresentation</span><span class="token punctuation">(</span>img<span class="token punctuation">,</span> <span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token comment" spellcheck="true">// 图片转码</span>
+ NSData <span class="token operator">*</span>dataImg <span class="token operator">=</span> <span class="token punctuation">[</span>data base64EncodedDataWithOptions<span class="token punctuation">:</span>NSDataBase64Encoding64CharacterLineLength<span class="token punctuation">]</span><span class="token punctuation">;</span>  
+</code></pre>
+<ul>
+<li>算了，直接撸代码</li>
+</ul>
+<pre class=" language-objectivec"><code class="language-objectivec"><span class="token comment" spellcheck="true">// 1、创建请求管理者</span>
+AFHTTPSessionManager <span class="token operator">*</span>mgr <span class="token operator">=</span> <span class="token punctuation">[</span>AFHTTPSessionManager manager<span class="token punctuation">]</span><span class="token punctuation">;</span>
+mgr<span class="token punctuation">.</span>responseSerializer <span class="token operator">=</span> <span class="token punctuation">[</span>AFHTTPResponseSerializer serializer<span class="token punctuation">]</span><span class="token punctuation">;</span>
+mgr<span class="token punctuation">.</span>requestSerializer <span class="token operator">=</span> <span class="token punctuation">[</span>AFHTTPRequestSerializer serializer<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+AFSecurityPolicy <span class="token operator">*</span>securityPolicy <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>AFSecurityPolicy alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">[</span>securityPolicy setAllowInvalidCertificates<span class="token punctuation">:</span>YES<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">[</span>mgr setSecurityPolicy<span class="token punctuation">:</span>securityPolicy<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">[</span>mgr<span class="token punctuation">.</span>requestSerializer setValue<span class="token punctuation">:</span><span class="token string">@"application/x-www-form-urlencoded; charset=utf-8"</span> forHTTPHeaderField<span class="token punctuation">:</span><span class="token string">@"Content-Type"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">[</span>mgr<span class="token punctuation">.</span>requestSerializer willChangeValueForKey<span class="token punctuation">:</span><span class="token string">@"timeoutInterval"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+mgr<span class="token punctuation">.</span>requestSerializer<span class="token punctuation">.</span>timeoutInterval <span class="token operator">=</span> <span class="token number">15.0f</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 默认超时时长为60s</span>
+<span class="token punctuation">[</span>mgr<span class="token punctuation">.</span>requestSerializer didChangeValueForKey<span class="token punctuation">:</span><span class="token string">@"timeoutInterval"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+mgr<span class="token punctuation">.</span>responseSerializer<span class="token punctuation">.</span>acceptableContentTypes <span class="token operator">=</span> <span class="token punctuation">[</span>NSSet setWithObjects<span class="token punctuation">:</span><span class="token string">@"text/plain"</span><span class="token punctuation">,</span> <span class="token string">@"multipart/form-data"</span><span class="token punctuation">,</span> <span class="token string">@"application/json"</span><span class="token punctuation">,</span> <span class="token string">@"text/html"</span><span class="token punctuation">,</span> <span class="token string">@"image/jpeg"</span><span class="token punctuation">,</span> <span class="token string">@"image/png"</span><span class="token punctuation">,</span> <span class="token string">@"application/octet-stream"</span><span class="token punctuation">,</span> <span class="token string">@"text/json"</span><span class="token punctuation">,</span> nil<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">[</span>mgr POST<span class="token punctuation">:</span>URL parameters<span class="token punctuation">:</span>nil constructingBodyWithBlock<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span>id<span class="token operator">&lt;</span>AFMultipartFormData<span class="token operator">></span>  _Nonnull formData<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token comment" spellcheck="true">// 参数名：img_base64 ：dataImg</span>
+<span class="token punctuation">[</span>formData appendPartWithFormData<span class="token punctuation">:</span>dataImg name<span class="token punctuation">:</span><span class="token string">@"img_base64"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> progress<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span>NSProgress <span class="token operator">*</span> _Nonnull uploadProgress<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span> success<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span>NSURLSessionDataTask <span class="token operator">*</span> _Nonnull task<span class="token punctuation">,</span> id  _Nullable responseObject<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    NSDictionary <span class="token operator">*</span>dict <span class="token operator">=</span> <span class="token punctuation">[</span>NSJSONSerialization JSONObjectWithData<span class="token punctuation">:</span>responseObject options<span class="token punctuation">:</span><span class="token number">0</span> error<span class="token punctuation">:</span>nil<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">self</span><span class="token punctuation">.</span>responseObj <span class="token operator">=</span> dict<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> failure<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span>NSURLSessionDataTask <span class="token operator">*</span> _Nullable task<span class="token punctuation">,</span> NSError <span class="token operator">*</span> _Nonnull error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">[</span>mgr<span class="token punctuation">.</span>operationQueue cancelAllOperations<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">SHOWERROR</span><span class="token punctuation">(</span><span class="token string">@"识别失败"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre>
+<blockquote>
+<p>注意：在iOS转成base64的data的时候，是不带data:image&#x2F;png;base64,这个头的，但是安卓在进行这些的时候是有的，所以需要跟后台商量好，踩坑了，以此谨记!<br>在AFN中还有另一种拼接方式，也是很常见的上传拼接方式</p>
+</blockquote>
+<h4 id="第二种方式"><a href="#第二种方式" class="headerlink" title="第二种方式"></a>第二种方式</h4><pre class=" language-objectivec"><code class="language-objectivec">
+<span class="token comment" spellcheck="true">/**
+POST请求（接收JSON格式数据）
+
+@param URLString  请求的URL
+@param parameters 请求的参数
+@param photos 上传图片数组
+@param success    请求成功的回调
+@param failure    请求失败的回调
+*/</span>
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>POST<span class="token punctuation">:</span><span class="token punctuation">(</span>NSString <span class="token operator">*</span><span class="token punctuation">)</span>URLString parameters<span class="token punctuation">:</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span>parameters photos<span class="token punctuation">:</span><span class="token punctuation">(</span>NSArray <span class="token operator">*</span><span class="token punctuation">)</span>photos  success<span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token keyword">void</span> <span class="token punctuation">(</span><span class="token operator">^</span><span class="token punctuation">)</span><span class="token punctuation">(</span>id responseObject<span class="token punctuation">)</span><span class="token punctuation">)</span> success failure<span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">(</span><span class="token operator">^</span><span class="token punctuation">)</span><span class="token punctuation">(</span>NSError <span class="token operator">*</span>error<span class="token punctuation">)</span><span class="token punctuation">)</span> failure <span class="token punctuation">{</span>
+   
+   <span class="token comment" spellcheck="true">// 1、创建请求管理者</span>
+   AFHTTPSessionManager <span class="token operator">*</span>mgr <span class="token operator">=</span> <span class="token punctuation">[</span>AFHTTPSessionManager manager<span class="token punctuation">]</span><span class="token punctuation">;</span>
+   mgr<span class="token punctuation">.</span>responseSerializer <span class="token operator">=</span> <span class="token punctuation">[</span>AFHTTPResponseSerializer serializer<span class="token punctuation">]</span><span class="token punctuation">;</span>
+   mgr<span class="token punctuation">.</span>requestSerializer <span class="token operator">=</span> <span class="token punctuation">[</span>AFHTTPRequestSerializer serializer<span class="token punctuation">]</span><span class="token punctuation">;</span>
+   
+   AFSecurityPolicy <span class="token operator">*</span>securityPolicy <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>AFSecurityPolicy alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+   <span class="token punctuation">[</span>securityPolicy setAllowInvalidCertificates<span class="token punctuation">:</span>YES<span class="token punctuation">]</span><span class="token punctuation">;</span>
+   <span class="token punctuation">[</span>mgr setSecurityPolicy<span class="token punctuation">:</span>securityPolicy<span class="token punctuation">]</span><span class="token punctuation">;</span>
+   <span class="token punctuation">[</span>mgr<span class="token punctuation">.</span>requestSerializer setValue<span class="token punctuation">:</span><span class="token string">@"application/x-www-form-urlencoded; charset=utf-8"</span> forHTTPHeaderField<span class="token punctuation">:</span><span class="token string">@"Content-Type"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+   
+   <span class="token punctuation">[</span>mgr<span class="token punctuation">.</span>requestSerializer willChangeValueForKey<span class="token punctuation">:</span><span class="token string">@"timeoutInterval"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+   mgr<span class="token punctuation">.</span>requestSerializer<span class="token punctuation">.</span>timeoutInterval <span class="token operator">=</span> <span class="token number">15.0f</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 默认超时时长为60s</span>
+   <span class="token punctuation">[</span>mgr<span class="token punctuation">.</span>requestSerializer didChangeValueForKey<span class="token punctuation">:</span><span class="token string">@"timeoutInterval"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+   
+   mgr<span class="token punctuation">.</span>responseSerializer<span class="token punctuation">.</span>acceptableContentTypes <span class="token operator">=</span> <span class="token punctuation">[</span>NSSet setWithObjects<span class="token punctuation">:</span><span class="token string">@"application/json"</span><span class="token punctuation">,</span> <span class="token string">@"text/json"</span><span class="token punctuation">,</span> <span class="token string">@"text/javascript"</span><span class="token punctuation">,</span> <span class="token string">@"text/html"</span><span class="token punctuation">,</span> <span class="token string">@"text/plain"</span><span class="token punctuation">,</span> nil<span class="token punctuation">]</span><span class="token punctuation">;</span>
+   <span class="token punctuation">[</span>mgr POST<span class="token punctuation">:</span>URLString  parameters<span class="token punctuation">:</span>parameters constructingBodyWithBlock<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span>id<span class="token operator">&lt;</span>AFMultipartFormData<span class="token operator">></span>  _Nonnull formData<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       <span class="token comment" spellcheck="true">// formData: 专门用于拼接需要上传的数据,在此位置生成一个要上传的数据体</span>
+       <span class="token comment" spellcheck="true">// 这里的_photoArr是你存放图片的数组</span>
+       <span class="token comment" spellcheck="true">// formData: 专门用于拼接需要上传的数据,在此位置生成一个要上传的数据体</span>
+       <span class="token comment" spellcheck="true">// 这里的_photoArr是你存放图片的数组</span>
+       <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> photos<span class="token punctuation">.</span>count<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+           
+           UIImage <span class="token operator">*</span>image <span class="token operator">=</span> photos<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+           <span class="token comment" spellcheck="true">//QFLog(@"+++++%@",image);</span>
+           NSData <span class="token operator">*</span>imageData <span class="token operator">=</span> <span class="token function">UIImagePNGRepresentation</span><span class="token punctuation">(</span>image<span class="token punctuation">)</span><span class="token punctuation">;</span>
+           
+           <span class="token comment" spellcheck="true">// 在网络开发中，上传文件时，是文件不允许被覆盖，文件重名</span>
+           <span class="token comment" spellcheck="true">// 要解决此问题，</span>
+           <span class="token comment" spellcheck="true">// 可以在上传时使用当前的系统事件作为文件名</span>
+           NSDateFormatter <span class="token operator">*</span>formatter <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>NSDateFormatter alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+           <span class="token comment" spellcheck="true">// 设置时间格式</span>
+           <span class="token punctuation">[</span>formatter setDateFormat<span class="token punctuation">:</span><span class="token string">@"yyyyMMddHHmmss"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+           NSString <span class="token operator">*</span>dateString <span class="token operator">=</span> <span class="token punctuation">[</span>formatter stringFromDate<span class="token punctuation">:</span><span class="token punctuation">[</span>NSDate date<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+           NSString <span class="token operator">*</span>fileName <span class="token operator">=</span> <span class="token punctuation">[</span>NSString  stringWithFormat<span class="token punctuation">:</span><span class="token string">@"%@%ld.png"</span><span class="token punctuation">,</span> dateString<span class="token punctuation">,</span><span class="token punctuation">(</span>NSInteger<span class="token punctuation">)</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+           <span class="token comment" spellcheck="true">/*
+            *该方法的参数
+            1. appendPartWithFileData：要上传的照片[二进制流]
+            2. name：对应网站上[upload.php中]处理文件的字段（比如upload）
+            3. fileName：要保存在服务器上的文件名
+            4. mimeType：上传的文件的类型
+            */</span>
+           <span class="token punctuation">[</span>formData appendPartWithFileData<span class="token punctuation">:</span>imageData name<span class="token punctuation">:</span><span class="token string">@"file"</span> fileName<span class="token punctuation">:</span>fileName mimeType<span class="token punctuation">:</span><span class="token string">@"application/octet-stream"</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//</span>
+       <span class="token punctuation">}</span>
+   <span class="token punctuation">}</span> progress<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span>NSProgress <span class="token operator">*</span> _Nonnull uploadProgress<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token punctuation">}</span> success<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span>NSURLSessionDataTask <span class="token operator">*</span> _Nonnull task<span class="token punctuation">,</span> id  _Nullable responseObject<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       <span class="token keyword">if</span> <span class="token punctuation">(</span>success<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+           <span class="token function">success</span><span class="token punctuation">(</span>responseObject<span class="token punctuation">)</span><span class="token punctuation">;</span>
+       <span class="token punctuation">}</span>
+       <span class="token punctuation">[</span>mgr<span class="token punctuation">.</span>operationQueue cancelAllOperations<span class="token punctuation">]</span><span class="token punctuation">;</span>
+       
+   <span class="token punctuation">}</span> failure<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span>NSURLSessionDataTask <span class="token operator">*</span> _Nullable task<span class="token punctuation">,</span> NSError <span class="token operator">*</span> _Nonnull error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       
+       <span class="token keyword">if</span> <span class="token punctuation">(</span>failure<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+           <span class="token function">failure</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+       <span class="token punctuation">}</span>
+       
+       <span class="token punctuation">[</span>mgr<span class="token punctuation">.</span>operationQueue cancelAllOperations<span class="token punctuation">]</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="系统方式"><a href="#系统方式" class="headerlink" title="系统方式"></a>系统方式</h4><p>如果不用AFN的话，用系统的方法，就有点麻烦了，这里是系统的方法：  </p>
+<pre class=" language-objectivec"><code class="language-objectivec"><span class="token macro property">#<span class="token directive keyword">pragma</span> mark ------系统上传</span>
+
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>uploadHeadImage<span class="token punctuation">:</span><span class="token punctuation">(</span>UIImage <span class="token operator">*</span><span class="token punctuation">)</span>image onSuccess<span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token keyword">void</span> <span class="token punctuation">(</span><span class="token operator">^</span><span class="token punctuation">)</span><span class="token punctuation">(</span>NSDictionary <span class="token operator">*</span>dict<span class="token punctuation">)</span><span class="token punctuation">)</span>onSuccess onFailure<span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">(</span><span class="token operator">^</span><span class="token punctuation">)</span><span class="token punctuation">(</span>NSError <span class="token operator">*</span>error<span class="token punctuation">)</span><span class="token punctuation">)</span>onFailure <span class="token punctuation">{</span>
+ 
+<span class="token comment" spellcheck="true">//BaseWebAddr：服务器地址</span>
+    NSString <span class="token operator">*</span>urlStr <span class="token operator">=</span> <span class="token string">@"http://47.104.193.88:8080/plant/recognize"</span><span class="token punctuation">;</span>
+    NSURL <span class="token operator">*</span>url <span class="token operator">=</span> <span class="token punctuation">[</span>NSURL URLWithString<span class="token punctuation">:</span>urlStr<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  
+    <span class="token comment" spellcheck="true">//在此声明一个字符串常量,代替下面的 BOUNDARY 字符串</span>
+<span class="token comment" spellcheck="true">//   NSString * const POST_BOUNDS = @"----iOSKitFormBoundarycIO0B6mmsXU6koBg";</span>
+    
+    NSData <span class="token operator">*</span>imageData<span class="token punctuation">;</span>
+    NSString <span class="token operator">*</span>imageFormat<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">UIImagePNGRepresentation</span><span class="token punctuation">(</span>image<span class="token punctuation">)</span> <span class="token operator">!=</span> nil<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        imageFormat <span class="token operator">=</span> <span class="token string">@"Content-Type: image/png \r\n"</span><span class="token punctuation">;</span>
+        imageData <span class="token operator">=</span> <span class="token function">UIImagePNGRepresentation</span><span class="token punctuation">(</span>image<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        imageData <span class="token operator">=</span> <span class="token punctuation">[</span>imageData base64EncodedDataWithOptions<span class="token punctuation">:</span>NSDataBase64Encoding64CharacterLineLength<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        
+    <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+        imageFormat <span class="token operator">=</span> <span class="token string">@"Content-Type: image/jpeg \r\n"</span><span class="token punctuation">;</span>
+        imageData <span class="token operator">=</span> <span class="token function">UIImageJPEGRepresentation</span><span class="token punctuation">(</span>image<span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        imageData <span class="token operator">=</span> <span class="token punctuation">[</span>imageData base64EncodedDataWithOptions<span class="token punctuation">:</span>NSDataBase64Encoding64CharacterLineLength<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    NSMutableURLRequest <span class="token operator">*</span>request  <span class="token operator">=</span> <span class="token punctuation">[</span>NSMutableURLRequest requestWithURL<span class="token punctuation">:</span>url<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    request<span class="token punctuation">.</span>HTTPMethod <span class="token operator">=</span> <span class="token string">@"POST"</span><span class="token punctuation">;</span>
+    
+    
+    <span class="token comment" spellcheck="true">//设置请求实体</span>
+    NSMutableData <span class="token operator">*</span>body <span class="token operator">=</span> <span class="token punctuation">[</span>NSMutableData data<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">///文件参数</span>
+    <span class="token punctuation">[</span>body appendData<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token keyword">self</span> getDataWithString<span class="token punctuation">:</span><span class="token string">@"--BOUNDARY\r\n"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    NSString <span class="token operator">*</span>disposition <span class="token operator">=</span> <span class="token punctuation">[</span>NSString stringWithFormat<span class="token punctuation">:</span><span class="token string">@"Content-Disposition: form-data; name=\"%@\"; filename=\"pppp.jpg\"\r\n"</span><span class="token punctuation">,</span><span class="token string">@"img_base64"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">[</span>body appendData<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token keyword">self</span> getDataWithString<span class="token punctuation">:</span>disposition<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">[</span>body appendData<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token keyword">self</span> getDataWithString<span class="token punctuation">:</span>imageFormat<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">[</span>body appendData<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token keyword">self</span> getDataWithString<span class="token punctuation">:</span><span class="token string">@"\r\n"</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">[</span>body appendData<span class="token punctuation">:</span>imageData<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">[</span>body appendData<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token keyword">self</span> getDataWithString<span class="token punctuation">:</span><span class="token string">@"\r\n"</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    
+    <span class="token comment" spellcheck="true">//普通参数</span>
+    <span class="token punctuation">[</span>body appendData<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token keyword">self</span> getDataWithString<span class="token punctuation">:</span><span class="token string">@"--BOUNDARY\r\n"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//上传参数需要key</span>
+    NSString <span class="token operator">*</span>dispositions <span class="token operator">=</span> <span class="token punctuation">[</span>NSString stringWithFormat<span class="token punctuation">:</span><span class="token string">@"Content-Disposition: form-data; name=\"%@\"\r\n"</span><span class="token punctuation">,</span><span class="token string">@"uid"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">[</span>body appendData<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token keyword">self</span> getDataWithString<span class="token punctuation">:</span>dispositions<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">[</span>body appendData<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token keyword">self</span> getDataWithString<span class="token punctuation">:</span><span class="token string">@"\r\n"</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">[</span>body appendData<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token keyword">self</span> getDataWithString<span class="token punctuation">:</span><span class="token string">@"\r\n"</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+     
+    <span class="token comment" spellcheck="true">//参数结束</span>
+    <span class="token punctuation">[</span>body appendData<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token keyword">self</span> getDataWithString<span class="token punctuation">:</span><span class="token string">@"--BOUNDARY--\r\n"</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    request<span class="token punctuation">.</span>HTTPBody <span class="token operator">=</span> body<span class="token punctuation">;</span>
+    
+    <span class="token comment" spellcheck="true">//设置请求体长度</span>
+    NSInteger length <span class="token operator">=</span> <span class="token punctuation">[</span>body length<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">[</span>request setValue<span class="token punctuation">:</span><span class="token punctuation">[</span>NSString stringWithFormat<span class="token punctuation">:</span><span class="token string">@"%ld"</span><span class="token punctuation">,</span>length<span class="token punctuation">]</span> forHTTPHeaderField<span class="token punctuation">:</span><span class="token string">@"Content-Length"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//设置 POST请求文件上传</span>
+    <span class="token punctuation">[</span>request setValue<span class="token punctuation">:</span><span class="token string">@"multipart/form-data; boundary=BOUNDARY"</span> forHTTPHeaderField<span class="token punctuation">:</span><span class="token string">@"Content-Type"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    
+    NSURLSession <span class="token operator">*</span>session <span class="token operator">=</span> <span class="token punctuation">[</span>NSURLSession sharedSession<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    
+    NSURLSessionDataTask <span class="token operator">*</span>dataTask <span class="token operator">=</span> <span class="token punctuation">[</span>session dataTaskWithRequest<span class="token punctuation">:</span>request completionHandler<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span>NSData <span class="token operator">*</span> _Nullable data<span class="token punctuation">,</span> NSURLResponse <span class="token operator">*</span> _Nullable response<span class="token punctuation">,</span> NSError <span class="token operator">*</span> _Nullable error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        
+        NSJSONSerialization <span class="token operator">*</span>object <span class="token operator">=</span> <span class="token punctuation">[</span>NSJSONSerialization JSONObjectWithData<span class="token punctuation">:</span>data options<span class="token punctuation">:</span>NSJSONReadingMutableLeaves error<span class="token punctuation">:</span>nil<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        NSDictionary <span class="token operator">*</span>dict <span class="token operator">=</span> <span class="token punctuation">(</span>NSDictionary <span class="token operator">*</span><span class="token punctuation">)</span>object<span class="token punctuation">;</span>
+        <span class="token function">NSLog</span><span class="token punctuation">(</span><span class="token string">@"=====%@"</span><span class="token punctuation">,</span><span class="token punctuation">[</span>dict objectForKey<span class="token punctuation">:</span><span class="token string">@"success"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//开始任务</span>
+    <span class="token punctuation">[</span>dataTask resume<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    
+<span class="token punctuation">}</span>
+
+<span class="token operator">-</span><span class="token punctuation">(</span>NSData <span class="token operator">*</span><span class="token punctuation">)</span>getDataWithString<span class="token punctuation">:</span><span class="token punctuation">(</span>NSString <span class="token operator">*</span><span class="token punctuation">)</span>string<span class="token punctuation">{</span>
+    
+    NSData <span class="token operator">*</span>data <span class="token operator">=</span> <span class="token punctuation">[</span>string dataUsingEncoding<span class="token punctuation">:</span>NSUTF8StringEncoding<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">return</span> data<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>这里的参数是img_base64:imageData uid:uid<br>本人也是在踩坑的路上不断前进，希望对大家有用</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">小小学生</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://jackerchongchong.github.io/jackerchongchong.github.io/2019/08/26/iosbase3/">https://jackerchongchong.github.io/jackerchongchong.github.io/2019/08/26/iosbase3/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">小小学生</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/AFN%E8%A1%A8%E5%8D%95%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/">
+                                    <span class="chip bg-color">AFN表单上传图片</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="qq,wechat" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay1.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat1.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: '65AHe1vPeY9CGEaXMxn7ilIL-gzGzoHsz',
+        appKey: '72O2LjQUWE4kPpH6WhC3QJhk',
+        serverURLs: 'https://65ahe1vp.lc-cn-n1-shared.com',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '快来写下你的评论吧'
+    });
+</script>
+
+<!--酷Q推送-->
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/11/26/macbase1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="提高Xcode编译速度">
+                        
+                        <span class="card-title">提高Xcode编译速度</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-11-26
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Mac%E4%BD%BF%E7%94%A8/" class="post-category">
+                                    Mac使用
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Mac%E4%BD%BF%E7%94%A8/">
+                        <span class="chip bg-color">Mac使用</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/08/21/iosbase2/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="修改UITextField的placeHolder文字颜色的三种方法">
+                        
+                        <span class="card-title">修改UITextField的placeHolder文字颜色的三种方法</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-08-21
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/iOS%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" class="post-category">
+                                    iOS基础知识总结
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/iOS%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">
+                        <span class="chip bg-color">iOS基础知识总结</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2024</span>
+            
+            <!-- <a href="/about" target="_blank">小小学生</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br> -->
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">11.3k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2019";
+                        var startMonth = "6";
+                        var startDate = "28";
+                        var startHour = "0";
+                        var startMinute = "0";
+                        var startSecond = "0";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        // 区分是否有年份.
+                        var language = 'zh-CN';
+                        if (startYear === String(todayYear)) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '本站已运行 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '本站已運行 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '本站已运行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '本站已運行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
+                    }
+
+                    calcSiteTime();
+                </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://jackptl.gitee.io/ptlblog/" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:825473280@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=825473280" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 825473280" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+     
+        <script type="text/javascript">
+            // 只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/libs/others/snow.js"><\/script>');
+            }
+        </script>
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":200,"height":250},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>
